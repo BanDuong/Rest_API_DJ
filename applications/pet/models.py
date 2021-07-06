@@ -12,7 +12,7 @@ class TimeAutomatic(models.Model):
         return ""
 
 class Pets(TimeAutomatic):
-    type = models.CharField(max_length=255,null=True,blank=True,help_text="choose type of pet",verbose_name="type name")
+    type = models.CharField(max_length=255,null=True,blank=True,help_text="choose type of pet",verbose_name="name type")
 
     class Meta:
         db_table = "tbl_pets"
@@ -23,7 +23,7 @@ class Pets(TimeAutomatic):
         return self.type
 
 class Cat(TimeAutomatic):
-    type = models.ForeignKey(Pets,null=True,blank=True,on_delete=models.DO_NOTHING,related_name="cat")
+    type = models.ForeignKey(Pets,null=True,blank=True,on_delete=models.DO_NOTHING,related_name="cats")
     country = models.CharField(max_length=255,null=True,blank=True,help_text="country's cat")
     name = models.CharField(max_length=255,null=True,blank=True,help_text="cat's name")
     birthday = models.DateField(null=True,blank=True,help_text="birth of day")
@@ -38,7 +38,7 @@ class Cat(TimeAutomatic):
         return "cat_"+self.name
 
 class Dog(TimeAutomatic):
-    type = models.ForeignKey(Pets,null=True,blank=True,on_delete=models.DO_NOTHING,related_name="dog")
+    type = models.ForeignKey(Pets,null=True,blank=True,on_delete=models.DO_NOTHING,related_name="dogs")
     country = models.CharField(max_length=255,null=True,blank=True,help_text="country's dog")
     name = models.CharField(max_length=255,null=True,blank=True,help_text="dog's name")
     birthday = models.DateField(null=True,blank=True,help_text="birth of day")
@@ -53,7 +53,7 @@ class Dog(TimeAutomatic):
         return "dog_"+self.name
 
 class Fish(TimeAutomatic):
-    type = models.ForeignKey(Pets,null=True,blank=True,on_delete=models.DO_NOTHING,related_name="fish")
+    type = models.ForeignKey(Pets,null=True,blank=True,on_delete=models.DO_NOTHING,related_name="fishes")
     country = models.CharField(max_length=255,null=True,blank=True,help_text="country's fish")
     name = models.CharField(max_length=255,null=True,blank=True,help_text="fish's name")
     birthday = models.DateField(null=True,blank=True,help_text="birth of day")

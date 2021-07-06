@@ -12,22 +12,24 @@ class PetAPI(generics.ListCreateAPIView):
     serializer_class = PetSerializer
 
     def get_queryset(self):
-        return Pets.objects.all()
+        return Pets.objects.prefetch_related('cats')\
+            .prefetch_related('dogs')\
+            .prefetch_related('fishes').all()
 
 class CatAPI(generics.ListCreateAPIView):
     serializer_class = CatSerializer
 
     def get_queryset(self):
-        return Cat.objects.prefetch_related("cat").all()
+        return Cat.objects.all()
 
 class DogAPI(generics.ListCreateAPIView):
     serializer_class = DogSerializer
 
     def get_queryset(self):
-        return Dog.objects.prefetch_related("dog").all()
+        return Dog.objects.all()
 
 class FishAPI(generics.ListCreateAPIView):
     serializer_class = FishSerializer
 
     def get_queryset(self):
-        return Fish.objects.prefetch_related("fish").all()
+        return Fish.objects.all()

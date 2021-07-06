@@ -20,9 +20,9 @@ class FishSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class PetSerializer(serializers.ModelSerializer):
-    cat = CatSerializer(many=True)
-    dog = DogSerializer(many=True)
-    fish = FishSerializer(many=True)
+    cats = CatSerializer(many=True)
+    dogs = DogSerializer(many=True)
+    fishes = FishSerializer(many=True)
     class Meta:
         model = Pets
-        fields = ['id','type','cat','dog','fish']
+        fields = ['id','type','cats','dogs','fishes']
