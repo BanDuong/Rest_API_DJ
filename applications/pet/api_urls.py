@@ -6,4 +6,5 @@ urlpatterns = [
     path('cat/',views.CatAPI.as_view(),name="cat_api"),
     path('dog/',views.DogAPI.as_view(),name="dog_api"),
     path('fish/',views.FishAPI.as_view(),name="fish_api"),
+    path('users/',views.ListUsers.as_view(),name="users_api"),
 ]
