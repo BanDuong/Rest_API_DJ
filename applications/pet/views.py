@@ -2,13 +2,11 @@ from django.shortcuts import render
 from rest_framework import generics
 from .serializers import PetSerializer,DogSerializer,CatSerializer,FishSerializer
 from .models import Pets,Dog,Cat,Fish
-from renderers import renderPets
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.views import APIView
-from django.contrib.auth.models import User
-from rest_framework import authentication, permissions
-import json
+from common.errors import *
+
+
 
 def index(request):
     return render(request,"homepage/base.html",{})
@@ -50,11 +48,15 @@ class FishAPI(generics.ListCreateAPIView):
         return Response(serializer.data)
 
     def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        try:
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            self.perform_create(serializer)
+            headers = self.get_success_headers(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        except Exception as e:
+            raise ErrCannotCreateEntity(entity="New Fish",err=e)
+
 
 class getRetrieveFish(generics.RetrieveUpdateDestroyAPIView):
     queryset = Fish.objects.all()

@@ -4,7 +4,7 @@ from rest_framework import status
 from rest_framework.exceptions import APIException
 from rest_framework.views import exception_handler
 
-from config.settings.default import DEBUG
+from Shop.settings.default import DEBUG
 
 
 def custom_exception_handler(exc, context):
@@ -65,7 +65,7 @@ class ErrAppEntity(APIException):
             entity = ''
 
         self.detail = f'{self.default_detail}{entity}'.strip()
-        self.default_code = f'{self.default_code}{entity}'
+        self.default_code = f'{self.default_code}{entity.replace(" ","")}' # edited here
         self.err = err
 
 
