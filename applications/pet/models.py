@@ -20,7 +20,10 @@ class Pets(TimeAutomatic):
         verbose_name_plural = "pet"
 
     def __str__(self):
-        return self.type
+        if self.type != None:
+            return self.type
+        else:
+            return "NoName"
 
 class Cat(TimeAutomatic):
     type = models.ForeignKey(Pets,null=True,blank=True,on_delete=models.DO_NOTHING,related_name="cats")
@@ -35,7 +38,10 @@ class Cat(TimeAutomatic):
         verbose_name_plural = "cat"
 
     def __str__(self):
-        return "cat_"+self.name
+        if self.name != None:
+            return "cat_" + self.name
+        else:
+            return "cat_" + "NoName"
 
 class Dog(TimeAutomatic):
     type = models.ForeignKey(Pets,null=True,blank=True,on_delete=models.DO_NOTHING,related_name="dogs")
@@ -50,7 +56,10 @@ class Dog(TimeAutomatic):
         verbose_name_plural = "dog"
 
     def __str__(self):
-        return "dog_"+self.name
+        if self.name != None:
+            return "dog_" + self.name
+        else:
+            return "dog_" + "NoName"
 
 class Fish(TimeAutomatic):
     type = models.ForeignKey(Pets,null=True,blank=True,on_delete=models.DO_NOTHING,related_name="fishes")
@@ -65,4 +74,7 @@ class Fish(TimeAutomatic):
         verbose_name_plural = "fish"
 
     def __str__(self):
-        return "fish_"+self.name
+        if self.name != None:
+            return "fish_" + self.name
+        else:
+            return "fish_" + "NoName"

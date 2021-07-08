@@ -1,8 +1,9 @@
 from rest_framework import serializers
 from .models import Pets,Cat,Dog,Fish
 
-class CatSerializer(serializers.ModelSerializer):
+#self.context.request()
 
+class CatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cat
         fields = "__all__"
@@ -26,3 +27,9 @@ class PetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pets
         fields = ['id','type','cats','dogs','fishes']
+        extra_kwargs = {
+            'type': {'required':False,'allow_null':True}
+        }
+
+    def validate_type(self,type):  # cu phap: validated_{field_name}
+        return name
