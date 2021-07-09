@@ -1,7 +1,8 @@
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 from .models import Pets,Cat,Dog,Fish
 from django.db.models import Q
-from rest_framework.exceptions import ValidationError
+
 
 #self.context.request()
 
@@ -35,6 +36,7 @@ class FishSerializer(serializers.ModelSerializer):
             raise ValidationError(detail="Thís name already exists!", code="name_existed")
         except Exception as e:
             raise e
+
 
 class PetSerializer(serializers.ModelSerializer):
     cats = CatSerializer(many=True)

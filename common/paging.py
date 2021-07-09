@@ -21,7 +21,8 @@ class CustomPagination(pagination.LimitOffsetPagination):
 
 
 class CustomPageNumberPagination(pagination.PageNumberPagination):
-    page_size = 1
+    page_size = 1   # có thể setup ở đây hoặc file settings/default
+    max_page_size = 100
 
     def get_paginated_response(self, data):
         return Response({
