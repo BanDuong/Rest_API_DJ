@@ -5,11 +5,15 @@ from .models import Pets,Dog,Cat,Fish
 from rest_framework import status
 from rest_framework.response import Response
 from common.errors import *
+from django.views.generic import ListView
+from .models import Fish
 
+class index(ListView):
 
+    def get(self,request):
+        objs = Fish.objects.all()
 
-def index(request):
-    return render(request,"homepage/base.html",{})
+        return render(request=request,template_name="homepage/base.html",context={"objs":objs})
 
 class PetAPI(generics.ListCreateAPIView):
     serializer_class = PetSerializer

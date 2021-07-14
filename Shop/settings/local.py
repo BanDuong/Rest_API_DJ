@@ -9,4 +9,3 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'common.paging.CustomPageNumberPagination',
     # 'PAGE_SIZE': 1, # có thể bỏ
 }
-
